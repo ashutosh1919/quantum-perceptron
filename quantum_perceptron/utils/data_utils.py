@@ -1,5 +1,4 @@
 import numpy as np
-import numpy.typing as npt
 
 
 def assert_negative(data: int):
