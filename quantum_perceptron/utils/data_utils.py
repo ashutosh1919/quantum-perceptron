@@ -1,4 +1,5 @@
 import numpy as np
+from typing import Dict, List, Optional
 
 
 def assert_negative(data: int):
@@ -9,23 +10,25 @@ def assert_negative(data: int):
         raise ValueError("Currently we do not support negative data values.")
 
 
-def get_bin_int(data: int) -> str:
+def get_bin_int(data: int, num_qubits: Optional[int] = None) -> str:
     """
     Get binary representation of integer.
     """
     assert_negative(data)
+    if num_qubits:
+        return bin(data)[2:].zfill(num_qubits)
     return bin(data)[2:]
 
 
-def get_num_bits(data: int) -> int:
+def assert_bits(data: int, num_bits: int):
     """
-    Get number of bits in an integer.
+    General method to prevent invalid number of bits.
     """
-    assert_negative(data)
-    return len(get_bin_int(data))
+    if len(get_bin_int(data)) > num_bits:
+        raise ValueError("data has more bits than num_bits")
 
 
-def get_vector_from_int(data: int) -> np.ndarray:
+def get_vector_from_int(data: int, num_qubits: int) -> np.ndarray:
     """
     This method returns the vector where each element is (-1)^b_i where b_i is
     the bit value at index i.
@@ -33,13 +36,14 @@ def get_vector_from_int(data: int) -> np.ndarray:
     Args:
       data: `int` representing data value
         (correspponding toinput or weight vector)
+      num_qubits: `int` representing number of qubits.
 
     Returns: Vector in  form of `np.ndarray`.
     """
     assert_negative(data)
+    assert_bits(data, num_qubits)
 
-    bin_data = get_bin_int(data)
-    num_qubits = get_num_bits(data)
+    bin_data = get_bin_int(data, num_qubits)
     data_vector = np.empty(num_qubits)
 
     for i, bit in enumerate(bin_data):
@@ -72,3 +76,27 @@ def get_possible_state_strings(num_bits: int) -> np.ndarray:
         states[i] = state_template.format(i)
 
     return states
+
+
+def get_ones_counts_to_states(states: np.ndarray) -> Dict[int, List[int]]:
+    """
+    Get the mapping from number of 1's to the states which has that many number
+    of 1 bits.
+
+    Args:
+      states: `np.ndarray` containing the bit strings of the states.
+
+    Returns: `dict` containing the mappings from count of 1's to the list
+      of states.
+    """
+    if len(states) == 0:
+        raise ValueError("The states array is empty")
+
+    ones_count: Dict[int, List[int]] = dict()
+    for i in range(len(states)):
+        ct = states[i].count('1')
+        if ct not in ones_count:
+            ones_count[ct] = []
+        ones_count[ct].append(i)
+
+    return ones_count
