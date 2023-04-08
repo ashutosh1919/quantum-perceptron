@@ -28,10 +28,11 @@ def test_get_bin_int(data, num_qubits, expected_result):
 
 
 @pytest.mark.parametrize("data, num_qubits, expected_result", [
-    (12, 4, np.array([-1, -1, 1, 1])),
-    (12, 5, np.array([1, -1, -1, 1, 1])),
-    (1, 1, np.array([-1])),
-    (12, 3, False),
+    (12, 4, np.array([1]*12 + [-1, -1, 1, 1])),
+    (12, 5, np.array([1]*28 + [-1, -1, 1, 1])),
+    (1, 1, np.array([1, -1])),
+    (12, 3, np.array([1]*4 + [-1, -1, 1, 1])),
+    (16, 2, False),
     (-5, 2, False)
 ])
 def test_get_vector_from_int(data, num_qubits, expected_result):

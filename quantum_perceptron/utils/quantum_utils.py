@@ -11,7 +11,8 @@ def append_hypergraph_state(
         circuit: QuantumCircuit,
         data_vector: np.ndarray,
         states: np.ndarray,
-        ones_count: Dict[int, List[int]]) -> QuantumCircuit:
+        ones_count: Dict[int, List[int]],
+        num_qubits: int) -> QuantumCircuit:
     """
     Append the computed hypergraph state to the circuit.
 
@@ -21,11 +22,11 @@ def append_hypergraph_state(
       states: `list` of `str` containing the bit strings for states.
       ones_count: `dict` containing mapping of the count of ones with
         index of states
+      num_qubits: `int` denoting total number of qubits in the circuit.
 
     Returns: `QuantumCircuit` object denoting the circuit containing
       hypergraph states.
     """
-    num_qubits = int(np.log2(len(data_vector)))
     is_sign_inverted = [1] * len(data_vector)
 
     # Flipping all signs if all zero state has coef -1.
@@ -56,7 +57,8 @@ def append_hypergraph_state(
 
 
 def create_hypergraph_state(circuit: QuantumCircuit,
-                            data_vector: np.ndarray) -> QuantumCircuit:
+                            data_vector: np.ndarray,
+                            num_qubits: int) -> QuantumCircuit:
     """
     Creating hypergraph state for specific data vector corresponding to
     the provided data (input or weight value).
@@ -65,16 +67,17 @@ def create_hypergraph_state(circuit: QuantumCircuit,
     Args:
       circuit: `QuantumCircuit` object corresponding to the perceptron.
       data_vector: `np.ndarray` containing the data vector containing -1s & 1s.
+      num_qubits: `int` denoting total number of qubits in the circuit.
 
     Returns: `QuantumCircuit` object denoting the circuit containing
       hypergraph states.
     """
-    num_qubits = int(np.log2(len(data_vector)))
     states = get_possible_state_strings(num_qubits)
     ones_count = get_ones_counts_to_states(states)
     return append_hypergraph_state(
         circuit,
         data_vector,
         states,
-        ones_count
+        ones_count,
+        num_qubits
     )

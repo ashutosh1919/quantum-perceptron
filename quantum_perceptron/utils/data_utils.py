@@ -16,7 +16,7 @@ def get_bin_int(data: int, num_qubits: Optional[int] = None) -> str:
     """
     assert_negative(data)
     if num_qubits:
-        return bin(data)[2:].zfill(num_qubits)
+        return bin(data)[2:].zfill(np.power(2, num_qubits))
     return bin(data)[2:]
 
 
@@ -24,7 +24,7 @@ def assert_bits(data: int, num_bits: int):
     """
     General method to prevent invalid number of bits.
     """
-    if len(get_bin_int(data)) > num_bits:
+    if len(get_bin_int(data)) > np.power(2, num_bits):
         raise ValueError("data has more bits than num_bits")
 
 
@@ -44,7 +44,7 @@ def get_vector_from_int(data: int, num_qubits: int) -> np.ndarray:
     assert_bits(data, num_qubits)
 
     bin_data = get_bin_int(data, num_qubits)
-    data_vector = np.empty(num_qubits)
+    data_vector = np.empty(np.power(2, num_qubits))
 
     for i, bit in enumerate(bin_data):
         data_vector[i] = np.power(-1, int(bit))
