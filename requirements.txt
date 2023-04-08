@@ -3,3 +3,4 @@ qiskit
 pycodestyle
 pytest
 mypy
+gradio
