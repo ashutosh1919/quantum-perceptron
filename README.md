@@ -9,3 +9,7 @@ app_file: gradio_app.py
 pinned: false
 license: apache-2.0
 ---
+
+# Quantum Perceptron
+
+Implementation of Quantum Perceptron: An Artificial Neuron Implemented on an Actual Quantum Processor.
