@@ -23,7 +23,8 @@ def run_perceptron(
         plt.text(i, v+10, v)
     plt.xlabel('Measured State')
     plt.ylabel('Frequency of Measured State')
-    plt.tight_layout()
+    freq_hist.subplots_adjust(top=0.2)
+    freq_hist.tight_layout()
     return prob_1, freq_hist
 
 
