@@ -14,7 +14,9 @@ def run_perceptron(
 ):
     p = Perceptron(num_qubits, weight_value, input_value)
     counts = p.measure_circuit(num_iters)
-    prob_1 = counts.get('1', 0) / num_iters
+    counts.setdefault('0', 0)
+    counts.setdefault('1', 0)
+    prob_1 = counts['1'] / num_iters
     freq_hist = plt.figure()
     plt.bar(counts.keys(), counts.values(), width=0.5)
     for i, v in enumerate(list(counts.values())):
