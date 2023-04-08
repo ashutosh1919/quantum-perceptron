@@ -5,6 +5,7 @@ from quantum_perceptron import Perceptron
 
 matplotlib.pyplot.switch_backend('Agg')
 
+
 def run_perceptron(
         num_qubits: int,
         input_value: int,
@@ -23,11 +24,14 @@ def run_perceptron(
     plt.tight_layout()
     return prob_1, freq_hist
 
+
 app_inputs = [
     gr.Slider(1, 9, value=2, step=1, label="Number of Qubits"),
     gr.Number(value=12, label="Input Value", precision=0),
     gr.Number(value=13, label="Weight Value", precision=0),
-    gr.Number(value=1000, label="Number of Measurement Iterations", precision=0),
+    gr.Number(value=1000,
+              label="Number of Measurement Iterations",
+              precision=0),
 ]
 
 app_outputs = [
@@ -39,5 +43,6 @@ demo = gr.Interface(
     fn=run_perceptron,
     inputs=app_inputs,
     outputs=app_outputs,
+    title="Simulate Quantum Perceptron",
 )
-demo.launch(share=True)
+demo.launch()
