@@ -35,7 +35,7 @@ def get_vector_from_int(data: int, num_qubits: int) -> np.ndarray:
 
     Args:
       data: `int` representing data value
-        (correspponding toinput or weight vector)
+        (correspponding to input or weight vector)
       num_qubits: `int` representing number of qubits.
 
     Returns: Vector in  form of `np.ndarray`.
@@ -50,6 +50,30 @@ def get_vector_from_int(data: int, num_qubits: int) -> np.ndarray:
         data_vector[i] = np.power(-1, int(bit))
 
     return data_vector
+
+
+def get_int_from_vector(data_vector: np.ndarray, num_qubits: int) -> int:
+    """
+    Get the integer data value from the vector.
+
+    Args:
+      data_vector: `np.ndarray` representing the vector.
+      num_qubits: `int` representing number of qubits.
+
+    Returns: `int` representing the data value.
+    """
+    if len(data_vector) != np.power(2, num_qubits):
+        raise ValueError("The vector length is not equal to 2^num_qubits")
+
+    data_bin_vec = []
+    for i, val in enumerate(data_vector):
+        if val == -1:
+            data_bin_vec.append('1')
+        elif val == 1:
+            data_bin_vec.append('0')
+
+    data_bin = ''.join(data_bin_vec)
+    return int(data_bin, 2)
 
 
 def get_possible_state_strings(num_bits: int) -> np.ndarray:
@@ -100,3 +124,20 @@ def get_ones_counts_to_states(states: np.ndarray) -> Dict[int, List[int]]:
         ones_count[ct].append(i)
 
     return ones_count
+
+
+def calculate_succ_probability(counts: Dict[str, int]) -> float:
+    """
+    Calculate the success probability from the counts of the states.
+
+    Args:
+      counts: `dict` containing the counts of the states.
+
+    Returns: `float` representing the success probability.
+    """
+    if len(counts) == 0:
+        raise ValueError("The counts dict is empty")
+
+    total_count = sum(counts.values())
+    succ_count = counts.get('1', 0)
+    return succ_count / total_count
