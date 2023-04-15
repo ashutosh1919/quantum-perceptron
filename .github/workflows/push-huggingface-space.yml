@@ -19,4 +19,4 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://ashutosh1919:$HF_TOKEN@huggingface.co/spaces/ashutosh1919/quantum-perceptron main
+        run: git push -f https://ashutosh1919:$HF_TOKEN@huggingface.co/spaces/ashutosh1919/quantum-perceptron main
