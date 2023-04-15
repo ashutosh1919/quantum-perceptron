@@ -41,7 +41,7 @@ def generate_dataset(num_qubits: int = 4,
                      num_pos_train_samples: int = 50,
                      num_neg_train_samples: int = 3000):
     """
-    Generate training dataset with fixed weight.
+    Generate training dataset with fixed weight value.
 
     Args:
         num_qubits: `int` representing number of qubits.
