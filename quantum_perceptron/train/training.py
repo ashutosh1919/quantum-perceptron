@@ -156,7 +156,7 @@ class PerceptronTrainer:
 
     def train(self, num_epochs: int):
         """
-        Train the perceptron.
+        Train the perceptron for `num_epochs` epochs.
         """
         for i in range(num_epochs):
             converged = self.train_epoch(i)
