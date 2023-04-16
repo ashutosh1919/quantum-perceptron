@@ -97,8 +97,7 @@ An Artificial Neuron Implemented on an Actual Quantum Processor -- https://arxiv
 	url = {https://doi.org/10.1038%2Fs41534-019-0140-4},
 	year = 2019,
 	month = {mar},
-	publisher = {Springer Science and Business Media {LLC}
-},
+	publisher = {Springer Science and Business Media {LLC}},
 	volume = {5},
 	number = {1},
 	author = {Francesco Tacchino and Chiara Macchiavello and Dario Gerace and Daniele Bajoni},
