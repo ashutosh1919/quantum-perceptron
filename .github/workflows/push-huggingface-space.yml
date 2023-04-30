@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
           lfs: true
       - name: Install lfs
-        run: git lfs install && git lfs track "*.pdf"
+        run: git lfs install && git lfs track "details/*.pdf"
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
