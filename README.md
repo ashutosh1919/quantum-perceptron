@@ -22,7 +22,7 @@ The repository contains the extensive codebase to create quantum perceptron circ
 
 Moreover, the authors of the paper evaluates single perceptron for different weight-input pairs and generate visualization. They prove that the probability (output of perceptron) is 1 when `weight = input`. We have simulated the same thing and created visualization in [`PerceptronSimulator.ipynb`](./PerceptronSimulator.ipynb).
 
-We have included the [project presentation](./details/presentation.pdf) and [project report](./details/report.pdf) in `details` directory which provides smaller details about the project and implementation details.
+We have included the [project presentation](./details/presentation.pdf) and [project report](./details/report.pdf) in `details` directory which provides smaller details about the project and the implementation details.
 
 
 ## Usage
