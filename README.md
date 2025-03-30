@@ -89,22 +89,23 @@ The saved image for the perceptron circuit of 4 qubits looks something like this
 In the above circuit, we can see two components `U_i` and `U_w`. These components are specifically to process input and weight data values respectively. The circuit is different for different values of input and weight. For more information, please take a look at the descriptions in the paper. For implementation, you can take a look at [`perceptron.py`](./quantum_perceptron/perceptron.py).
 
 
-## Reference
+## Reference Usage
 
-An Artificial Neuron Implemented on an Actual Quantum Processor -- https://arxiv.org/abs/1811.02266
+Implementing An Artificial Quantum Perceptron -- https://arxiv.org/abs/2412.02083
 
 ```
-@article{Tacchino_2019,
-	doi = {10.1038/s41534-019-0140-4},
-	url = {https://doi.org/10.1038%2Fs41534-019-0140-4},
-	year = 2019,
-	month = {mar},
-	publisher = {Springer Science and Business Media {LLC}},
-	volume = {5},
-	number = {1},
-	author = {Francesco Tacchino and Chiara Macchiavello and Dario Gerace and Daniele Bajoni},
-	title = {An artificial neuron implemented on an actual quantum processor},
-	journal = {npj Quantum Information}
+@article{2025,
+   title={Implementing an Artificial Quantum Perceptron},
+   volume={2},
+   ISSN={2997-2795},
+   url={http://dx.doi.org/10.33140/ACPMS.02.01.01},
+   DOI={10.33140/acpms.02.01.01},
+   number={1},
+   journal={Annals of Computational Physics and Material Science},
+   publisher={Opast Group LLC},
+   author={Hathidara, Ashutosh and Pandey, Lalit},
+   year={2025},
+   month=jan, pages={01–05}
 }
 ```
 
